@@ -1,375 +1,762 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Happy Birthday Harshada ❤️</title>
 
 <style>
+
 * {
+
     box-sizing: border-box;
+
     margin: 0;
+
     padding: 0;
+
 }
 
 body {
-    font-family: "Segoe UI", sans-serif;
-    background: linear-gradient(135deg, #ffd6e7, #fff0f6, #ffe2ed);
-    color: #4a2433;
-    overflow-x: hidden;
+
+    font-family: "Poppins", Arial, sans-serif;
+
+    background: #120b1f;
+
+    color: white;
+
+    overflow: hidden;
+
 }
 
-/* PASSWORD SCREEN */
+.screen {
 
-#passwordScreen {
     position: fixed;
+
     inset: 0;
-    background: linear-gradient(135deg, #ffd1e2, #fff1f6);
-    display: flex;
+
+    width: 100%;
+
+    min-height: 100vh;
+
+    display: none;
+
     justify-content: center;
+
     align-items: center;
-    text-align: center;
-    z-index: 9999;
-}
 
-.password-box {
-    width: 90%;
-    max-width: 400px;
-    padding: 35px 25px;
-    background: rgba(255,255,255,0.8);
-    border-radius: 25px;
-    box-shadow: 0 15px 50px rgba(120,50,80,0.15);
-}
-
-.password-box .emoji {
-    font-size: 55px;
-}
-
-.password-box h1 {
-    margin-top: 15px;
-    font-size: 28px;
-    color: #d94f7d;
-}
-
-.password-box p {
-    margin-top: 12px;
-}
-
-.hint {
-    font-size: 14px;
-    color: #8b6271;
-    margin-top: 18px;
-}
-
-input {
-    width: 100%;
-    padding: 13px;
-    margin-top: 15px;
-    border: 2px solid #f1b5c9;
-    border-radius: 25px;
-    outline: none;
-    text-align: center;
-    font-size: 16px;
-}
-
-.open-btn {
-    margin-top: 15px;
-    padding: 13px 28px;
-    border: none;
-    border-radius: 30px;
-    background: #d94f7d;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-#error {
-    display: none;
-    color: #d94f7d;
-    margin-top: 12px;
-}
-
-/* MAIN */
-
-.container {
-    width: 90%;
-    max-width: 700px;
-    margin: 40px auto;
-    padding: 30px 22px;
-    background: rgba(255,255,255,0.8);
-    border-radius: 25px;
-    text-align: center;
-    box-shadow: 0 15px 50px rgba(120,50,80,0.15);
-}
-
-.cake {
-    font-size: 55px;
-    animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
-h1 {
-    margin-top: 15px;
-    font-size: 36px;
-    color: #d94f7d;
-    animation: glow 2s infinite alternate;
-}
-
-@keyframes glow {
-    from { text-shadow: 0 0 5px #ffc0d5; }
-    to { text-shadow: 0 0 20px #ff8fb3; }
-}
-
-.subtitle {
-    margin-top: 12px;
-    font-size: 18px;
-}
-
-.line {
-    width: 80px;
-    height: 3px;
-    background: #e8759a;
-    margin: 25px auto;
-    border-radius: 10px;
-}
-
-/* MESSAGE */
-
-.message {
-    text-align: left;
-    line-height: 1.8;
-    font-size: 16px;
-}
-
-.message p {
-    margin-bottom: 18px;
-}
-
-/* PHOTOS */
-
-.photos-title {
-    margin-top: 35px;
-    margin-bottom: 20px;
-    color: #d94f7d;
-}
-
-.photos {
-    display: flex;
     flex-direction: column;
-    gap: 20px;
+
+    text-align: center;
+
+    padding: 25px;
+
+    overflow-y: auto;
+
 }
 
-.photos img {
+.screen.active {
+
+    display: flex;
+
+    animation: fadeIn 0.8s ease;
+
+}
+
+@keyframes fadeIn {
+
+    from {
+
+        opacity: 0;
+
+        transform: scale(0.97);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: scale(1);
+
+    }
+
+}
+
+/* BACKGROUND */
+
+.screen::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+
+        radial-gradient(circle at 20% 20%, #633b91 0%, transparent 30%),
+
+        radial-gradient(circle at 80% 80%, #8d426b 0%, transparent 30%);
+
+    opacity: 0.35;
+
+    pointer-events: none;
+
+}
+
+.content {
+
+    position: relative;
+
+    z-index: 5;
+
     width: 100%;
-    border-radius: 20px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    transition: transform 0.3s;
+
+    max-width: 900px;
+
 }
 
-.photos img:hover {
-    transform: scale(1.02);
-}
+/* BUTTON */
 
-/* SECRET */
+button {
 
-.secret-btn {
-    margin-top: 25px;
-    padding: 13px 25px;
     border: none;
+
+    padding: 13px 25px;
+
     border-radius: 30px;
-    background: #d94f7d;
-    color: white;
+
     font-size: 16px;
+
     cursor: pointer;
+
+    background: #ff8fbd;
+
+    color: white;
+
+    margin-top: 25px;
+
+    box-shadow: 0 5px 20px rgba(255, 143, 189, 0.35);
+
 }
 
-#secret {
-    display: none;
-    margin-top: 25px;
-    padding: 20px;
-    border-radius: 18px;
-    background: #fff0f5;
-    line-height: 1.8;
+button:active {
+
+    transform: scale(0.95);
+
+}
+
+/* PAGE 1 */
+
+#page1 h1 {
+
+    font-size: clamp(32px, 8vw, 65px);
+
+    margin-top: 35px;
+
+    opacity: 0;
+
+    animation: titleAppear 1s ease forwards;
+
+    animation-delay: 4.5s;
+
+}
+
+#page1 p {
+
+    font-size: 17px;
+
+    margin-top: 12px;
+
+    opacity: 0;
+
+    animation: titleAppear 1s ease forwards;
+
+    animation-delay: 5s;
+
+}
+
+@keyframes titleAppear {
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+/* CAKE */
+
+.cake-area {
+
+    position: relative;
+
+    width: 260px;
+
+    height: 270px;
+
+    margin: auto;
+
+}
+
+.cake-layer {
+
+    position: absolute;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 210px;
+
+    height: 55px;
+
+    border-radius: 12px;
+
+    background: linear-gradient(#8b4b4b, #633131);
+
+    box-shadow: inset 0 -8px rgba(0,0,0,0.12);
+
+    opacity: 0;
+
+}
+
+.layer1 {
+
+    bottom: 20px;
+
+    animation: dropLayer 0.8s ease forwards;
+
+    animation-delay: 0.5s;
+
+}
+
+.layer2 {
+
+    bottom: 70px;
+
+    animation: dropLayer 0.8s ease forwards;
+
+    animation-delay: 1.4s;
+
+}
+
+.layer3 {
+
+    bottom: 120px;
+
+    animation: dropLayer 0.8s ease forwards;
+
+    animation-delay: 2.3s;
+
+}
+
+.layer4 {
+
+    bottom: 170px;
+
+    width: 170px;
+
+    animation: dropLayer 0.8s ease forwards;
+
+    animation-delay: 3.2s;
+
+}
+
+@keyframes dropLayer {
+
+    0% {
+
+        opacity: 0;
+
+        transform: translate(-50%, -300px) rotate(5deg);
+
+    }
+
+    70% {
+
+        transform: translate(-50%, 15px) rotate(-2deg);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform: translate(-50%, 0) rotate(0);
+
+    }
+
+}
+
+/* CREAM */
+
+.cream {
+
+    position: absolute;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    height: 13px;
+
+    width: 190px;
+
+    background: #ffd5e6;
+
+    border-radius: 20px;
+
+    opacity: 0;
+
+}
+
+.cream1 {
+
+    bottom: 68px;
+
+    animation: appearCream 0.5s ease forwards;
+
+    animation-delay: 2.1s;
+
+}
+
+.cream2 {
+
+    bottom: 118px;
+
+    width: 190px;
+
+    animation: appearCream 0.5s ease forwards;
+
+    animation-delay: 3s;
+
+}
+
+@keyframes appearCream {
+
+    to {
+
+        opacity: 1;
+
+    }
+
+}
+
+/* CANDLES */
+
+.candles {
+
+    position: absolute;
+
+    top: 20px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    gap: 18px;
+
+    opacity: 0;
+
+    animation: candlesAppear 0.8s ease forwards;
+
+    animation-delay: 4s;
+
+}
+
+.candle {
+
+    width: 13px;
+
+    height: 45px;
+
+    background: #ff9bc4;
+
+    border-radius: 5px;
+
+    position: relative;
+
+}
+
+.flame {
+
+    position: absolute;
+
+    top: -17px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 12px;
+
+    height: 17px;
+
+    background: #ffd166;
+
+    border-radius: 50% 50% 50% 50%;
+
+    animation: flicker 0.5s infinite alternate;
+
+}
+
+@keyframes candlesAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform: translate(-50%, -60px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translate(-50%, 0);
+
+    }
+
+}
+
+@keyframes flicker {
+
+    from {
+
+        transform: translateX(-50%) scale(1);
+
+    }
+
+    to {
+
+        transform: translateX(-50%) scale(0.8);
+
+    }
+
 }
 
 /* HEARTS */
 
 .heart {
+
     position: fixed;
+
     bottom: -30px;
+
     font-size: 20px;
-    opacity: 0.7;
+
+    animation: floatHeart 7s linear infinite;
+
+    opacity: 0.6;
+
     pointer-events: none;
-    animation: floatUp linear infinite;
+
 }
 
-@keyframes floatUp {
+@keyframes floatHeart {
+
     0% {
-        transform: translateY(0) rotate(0deg);
+
+        transform: translateY(0) rotate(0);
+
         opacity: 0;
+
     }
 
     20% {
-        opacity: 0.8;
+
+        opacity: 0.7;
+
     }
 
     100% {
+
         transform: translateY(-110vh) rotate(360deg);
+
         opacity: 0;
-    }
-}
 
-.footer {
-    margin-top: 30px;
-    font-size: 14px;
-    color: #8b6271;
-}
-
-@media(max-width:500px) {
-
-    h1 {
-        font-size: 29px;
     }
 
-    .message {
+}
+
+/* PAGE 2 */
+
+#page2 h2,
+
+#page3 h2,
+
+#page4 h2 {
+
+    font-size: clamp(30px, 7vw, 48px);
+
+    margin-bottom: 10px;
+
+}
+
+.subtitle {
+
+    opacity: 0.8;
+
+    margin-bottom: 25px;
+
+}
+
+.gallery {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 12px;
+
+    max-width: 650px;
+
+    margin: auto;
+
+}
+
+.gallery img {
+
+    width: 100%;
+
+    height: 180px;
+
+    object-fit: cover;
+
+    border-radius: 15px;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.35);
+
+    transition: 0.3s;
+
+}
+
+.gallery img:hover {
+
+    transform: scale(1.03);
+
+}
+
+/* PAGE 3 */
+
+.letter-box {
+
+    max-width: 700px;
+
+    max-height: 55vh;
+
+    overflow-y: auto;
+
+    margin: 20px auto;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(10px);
+
+    line-height: 1.8;
+
+    text-align: left;
+
+}
+
+.letter-box p {
+
+    margin-bottom: 16px;
+
+}
+
+/* PAGE 4 */
+
+.secret-photo {
+
+    width: min(330px, 85vw);
+
+    height: 330px;
+
+    object-fit: cover;
+
+    border-radius: 25px;
+
+    margin: 20px auto;
+
+    box-shadow: 0 10px 35px rgba(0,0,0,0.4);
+
+}
+
+.secret-text {
+
+    max-width: 650px;
+
+    line-height: 1.8;
+
+    font-size: 17px;
+
+    padding: 0 10px;
+
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .cake-area {
+
+        transform: scale(0.85);
+
+        margin-bottom: -10px;
+
+    }
+
+    .gallery img {
+
+        height: 145px;
+
+    }
+
+    .letter-box {
+
+        max-height: 58vh;
+
+        padding: 20px;
+
         font-size: 15px;
+
     }
+
+    .secret-photo {
+
+        height: 260px;
+
+    }
+
+    button {
+
+        font-size: 15px;
+
+    }
+
 }
+
 </style>
+
 </head>
 
 <body>
 
+<!-- FLOATING HEARTS -->
 
-<!-- PASSWORD SCREEN -->
+<div class="heart" style="left:10%; animation-delay:1s;">❤️</div>
 
-<div id="passwordScreen">
+<div class="heart" style="left:25%; animation-delay:3s;">💗</div>
 
-    <div class="password-box">
+<div class="heart" style="left:45%; animation-delay:5s;">💕</div>
 
-        <div class="emoji">🎁</div>
+<div class="heart" style="left:65%; animation-delay:2s;">❤️</div>
 
-        <h1>Hey Harshada ❤️</h1>
-
-        <p>
-            I made something little for you...
-        </p>
-
-        <p class="hint">
-            Hint: What do you call me the most? 👀❤️
-        </p>
-
-        <input
-            type="password"
-            id="password"
-            placeholder="Enter the secret word..."
-        >
-
-        <button class="open-btn" onclick="checkPassword()">
-            Open Your Surprise 🎀
-        </button>
-
-        <p id="error">
-            Hmm... wrong password 😂 Try again ❤️
-        </p>
-
-    </div>
-
-</div>
-
+<div class="heart" style="left:85%; animation-delay:4s;">💗</div>
 
 <!-- MUSIC -->
 
 <audio id="bgMusic" loop>
 
-    <!-- Put your music file name here -->
-
     <source src="song.mp3" type="audio/mpeg">
 
 </audio>
 
+<!-- PAGE 1 -->
 
-<!-- FLOATING HEARTS -->
+<section id="page1" class="screen active">
 
-<div class="heart" style="left:10%; animation-duration:7s;">❤️</div>
-<div class="heart" style="left:25%; animation-duration:9s;">💗</div>
-<div class="heart" style="left:40%; animation-duration:6s;">💕</div>
-<div class="heart" style="left:55%; animation-duration:8s;">❤️</div>
-<div class="heart" style="left:70%; animation-duration:10s;">💖</div>
-<div class="heart" style="left:85%; animation-duration:7s;">💗</div>
+<div class="content">
 
+    <div class="cake-area">
 
-<!-- MAIN PAGE -->
+        <div class="candles">
 
-<div class="container">
+            <div class="candle">
 
-    <div class="cake">🎂</div>
+                <div class="flame"></div>
 
-    <h1>
-        Happy Birthday Harshada ❤️
-    </h1>
+            </div>
 
-    <p class="subtitle">
-        Enjoy your day, you deserve all the happiness 🫶🏻✨
-    </p>
+            <div class="candle">
 
-    <div class="line"></div>
+                <div class="flame"></div>
 
+            </div>
 
-    <!-- MESSAGE -->
+            <div class="candle">
 
-    <div class="message">
+                <div class="flame"></div>
 
-        <p>
-            Happy Birthdayyy Harshada ❤️
-        </p>
+            </div>
 
-        <p>
-            I honestly don't know how to write a perfect birthday
-            message, so I'm just going to write whatever I actually feel.
-        </p>
+        </div>
 
-        <p>
-            You have become such an important part of my life.
-            All the little moments we share, even the random and simple
-            ones, mean a lot to me.
-        </p>
+        <div class="cake-layer layer4"></div>
 
-        <p>
-            Sometimes we don't even do anything special, but somehow
-            those moments still become my favourite memories.
-        </p>
+        <div class="cake-layer layer3"></div>
 
-        <p>
-            I really care about you and I'm genuinely grateful for
-            all the memories we've made together.
-        </p>
+        <div class="cake-layer layer2"></div>
 
-        <p>
-            I hope this birthday brings you lots of happiness,
-            smiles, good memories and everything you've been wishing for. ❤️
-        </p>
+        <div class="cake-layer layer1"></div>
 
-        <p>
-            And yes... I made this little website just for you 😂❤️
-            because a normal birthday message wasn't enough.
-        </p>
+        <div class="cream cream1"></div>
+
+        <div class="cream cream2"></div>
 
     </div>
 
+    <h1>Happy Birthday Harshada ❤️</h1>
 
-    <!-- PHOTOS -->
+    <p>
 
-    <h2 class="photos-title">
-        Our Little Memories 📸❤️
-    </h2>
+        I made a little something for you... 🥹
 
-    <div class="photos">
+    </p>
+
+    <button onclick="startExperience()">
+
+        Open Your Surprise 💌
+
+    </button>
+
+</div>
+
+</section>
+
+<!-- PAGE 2 -->
+
+<section id="page2" class="screen">
+
+<div class="content">
+
+    <h2>Our Memories 📸❤️</h2>
+
+    <p class="subtitle">
+
+        A few of my favourite moments with you.
+
+    </p>
+
+    <div class="gallery">
 
         <img src="photo1.jpg" alt="Memory 1">
 
@@ -381,100 +768,228 @@ h1 {
 
     </div>
 
+    <button onclick="nextPage(3)">
 
-    <!-- SECRET MESSAGE -->
+        Next → 💗
 
-    <button class="secret-btn" onclick="showSecret()">
-        Open One More Thing 💌
     </button>
 
-    <div id="secret">
+</div>
 
-        <h2>For You ❤️</h2>
+</section>
 
-        <p style="margin-top:15px;">
+<!-- PAGE 3 -->
 
-            No matter how many gifts I give you,
-            I don't think they can properly explain
-            how much you mean to me.
+<section id="page3" class="screen">
+
+<div class="content">
+
+    <h2>Things I Don't Always Say... 💌</h2>
+
+    <div class="letter-box">
+
+        <p>
+
+            Happy Birthdayyy Harshada ❤️
 
         </p>
 
-        <p style="margin-top:15px;">
+        <p>
 
-            I just hope whenever you look at this page,
-            you remember that someone put all this together
-            just to make you smile. 🫶🏻
+            I honestly don't know how to write a perfect letter,
+
+            so I'm just going to write whatever I actually feel.
 
         </p>
 
-        <p style="margin-top:15px;">
-            Happy Birthday once again, Harshada ❤️
+        <p>
+
+            These past months with you have given me so many memories.
+
+            Even the smallest things somehow become special to me
+
+            when I'm with you.
+
+        </p>
+
+        <p>
+
+            Whether we're talking, meeting in college, going somewhere,
+
+            eating something together, or just doing completely random
+
+            things, I still end up being happy because it's with you.
+
+        </p>
+
+        <p>
+
+            I know we're not perfect and sometimes we misunderstand
+
+            each other or things don't go the way we want.
+
+            But even then, you're still someone I care about a lot.
+
+        </p>
+
+        <p>
+
+            I hope this birthday brings you lots of happiness,
+
+            good memories and everything you wish for.
+
+        </p>
+
+        <p>
+
+            And obviously I had to make something special for you
+
+            because you're my favourite person. 🫶🏻
+
+        </p>
+
+        <p>
+
+            Happy Birthday once again, Harshada. ❤️
+
+        </p>
+
+        <p>
+
+            — Afzal 🫶🏻
+
         </p>
 
     </div>
 
+    <button onclick="nextPage(4)">
 
-    <div class="footer">
+        One More Thing... 👀
 
-        Made with lots of effort & a little bit of craziness 😂❤️
+    </button>
+
+</div>
+
+</section>
+
+<!-- PAGE 4 -->
+
+<section id="page4" class="screen">
+
+<div class="content">
+
+    <h2>Okay... This One Is Just For You 🧸❤️</h2>
+
+    <img
+
+        src="photo5.jpg"
+
+        alt="Our special memory"
+
+        class="secret-photo"
+
+    >
+
+    <div class="secret-text">
+
+        <p>
+
+            Harshada, I just want you to know that you really are
+
+            very special to me. ❤️
+
+        </p>
 
         <br>
 
-        — Afzal
+        <p>
+
+            I don't always know how to explain everything I feel,
+
+            but I hope through all these little things you can see
+
+            how much you mean to me.
+
+        </p>
+
+        <br>
+
+        <p>
+
+            Thank you for all the memories, all the laughs,
+
+            all the random moments and simply for being you.
+
+        </p>
+
+        <br>
+
+        <p>
+
+            I hope we get to make a lot more memories together. 🫶🏻
+
+        </p>
+
+        <br>
+
+        <h3>
+
+            Happy Birthday, Harshada ❤️🎂
+
+        </h3>
 
     </div>
 
 </div>
 
+</section>
 
 <script>
 
-/* PASSWORD */
+let currentPage = 1;
 
-function checkPassword() {
+function showPage(pageNumber) {
 
-    const password =
-        document.getElementById("password").value;
+    document.querySelectorAll(".screen").forEach(screen => {
 
-    if (password.toLowerCase() === "pagal") {
+        screen.classList.remove("active");
 
-        const screen =
-            document.getElementById("passwordScreen");
+    });
 
-        screen.style.opacity = "0";
+    document.getElementById("page" + pageNumber)
 
-        setTimeout(function() {
+        .classList.add("active");
 
-            screen.style.display = "none";
+    currentPage = pageNumber;
 
-        }, 1000);
-
-
-        /* START MUSIC */
-
-        document.getElementById("bgMusic").play();
-
-    }
-
-    else {
-
-        document.getElementById("error").style.display = "block";
-
-    }
+    window.scrollTo(0, 0);
 
 }
 
+function nextPage(pageNumber) {
 
-/* SECRET MESSAGE */
+    showPage(pageNumber);
 
-function showSecret() {
+}
 
-    document.getElementById("secret").style.display = "block";
+function startExperience() {
+
+    const music = document.getElementById("bgMusic");
+
+    music.volume = 0.45;
+
+    music.play().catch(() => {
+
+        console.log("Music needs user interaction.");
+
+    });
+
+    showPage(2);
 
 }
 
 </script>
 
 </body>
+
 </html>
